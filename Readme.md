@@ -19,13 +19,22 @@ Application structure is divided into tree main parts: API, DB and UI.
 
 ```mermaid
 architecture-beta
-    service db(mdi:database)[MongoDB]
-    service react(mdi:react)[ReactJS SPA]
-    service charts(mdi:chart-line)[incl charts]
-    service server(mdi:graphql)[GraphQL API]
 
-    db:L <--> R:server
-    react:B --> T:server
+    group apiG(server)[API]
+    group uiG(mdi:react)[UI]
+    group dbG(mdi:database)[DB]
+
+    service db(mdi:database)[MongoDB] in dbG
+    service react(mdi:react)[ReactJS SPA] in uiG
+    service charts(mdi:chart-line)[incl charts] in uiG
+    service nodejs(server)[NodeJS] in apiG
+    service graphql(mdi:graphql)[GraphQL API] in apiG
+    service prisma(mdi:database-search-outline)[Prisma] in apiG
+
+    prisma:L <--> R:nodejs
+    prisma:R --> L:db
+    nodejs:T --> B:graphql
+    react:B --> T:graphql
     react:R --> L:charts
 ```
 
@@ -104,3 +113,22 @@ npm i --save-dev @types/express
 ```bash
 npm i --save express-graphql graphql
 ``` 
+
+### Install Database
+#### MongoDB
+Refer to https://www.prisma.io/dataguide/mongodb/setting-up-a-local-mongodb-database
+
+#### Prisma ORM
+```bash
+npm i --save-dev prisma
+npm i --save @prisma/client
+npx prisma init
+```
+Update schema.prisma and .env to corresponding MongoDB settings
+
+Pull DB schema and generate client
+```bash
+npx prisma db pull
+npx prisma generate
+```
+

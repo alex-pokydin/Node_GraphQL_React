@@ -1,17 +1,3 @@
-<script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-      
-      mermaid.registerIconPacks([
-        {
-          name: 'mdi',
-          loader: () =>
-            fetch('https://unpkg.com/@iconify-json/mdi/icons.json').then((res) => res.json()),
-        },
-      ]);
-
-</script>
-
 # Complete App with GraphQL, Node.js, MongoDB and React.js
 
 ## Project Overview
@@ -37,16 +23,16 @@ Application structure is divided into tree main parts: API, DB and UI.
 ```mermaid
 architecture-beta
 
-    group apiG(mdi:server)[API]
-    group uiG(mdi:react)[UI]
-    group dbG(mdi:database)[DB]
+    group apiG[API]
+    group uiG[UI]
+    group dbG[DB]
 
-    service db(mdi:database)[MongoDB] in dbG
-    service react(mdi:react)[ReactJS SPA] in uiG
-    service charts(mdi:chart-line)[incl charts] in uiG
-    service nodejs(mdi:nodejs)[NodeJS] in apiG
-    service graphql(mdi:graphql)[GraphQL API] in apiG
-    service prisma(mdi:database-search-outline)[Prisma] in apiG
+    service db(database)[MongoDB] in dbG
+    service react(cloud)[ReactJS SPA] in uiG
+    service charts(cloud)[incl charts] in uiG
+    service nodejs(server)[NodeJS] in apiG
+    service graphql(server)[GraphQL API] in apiG
+    service prisma(server)[Prisma] in apiG
 
     prisma:L <--> R:nodejs
     prisma:R --> L:db

@@ -7,18 +7,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Events {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+model Event {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String
   price       Float
   date        DateTime
-  creator     User     @relation(fields: [creatorId], references: [id])
-  creatorId   String   @db.ObjectId
+  creator     User      @relation(fields: [creatorId], references: [id])
+  creatorId   String    @db.ObjectId
+  Booking     Booking[]
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  Events   Events[]
+  email    String
+  password String
+  Events   Event[]
+  Booking  Booking[]
+}
+
+model Booking {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  event     Event  @relation(fields: [eventId], references: [id])
+  eventId   String @db.ObjectId
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String @db.ObjectId
+  createdAt DateTime
+  updatedAt DateTime
 }

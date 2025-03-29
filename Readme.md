@@ -7,14 +7,13 @@ This is a complete app with GraphQL, Node.js, MongoDB and React.js. This app is 
 ## Features
 
 - Server
-  - Node.js
   - Express.js
   - GraphQL
+  - Prisma
+- Database
   - MongoDB
-  - Mongoose
 - Client
   - React.js
-  - Apollo Client
 
 ## Structure
 
@@ -30,7 +29,7 @@ architecture-beta
     service db(database)[MongoDB] in dbG
     service react(cloud)[ReactJS SPA] in uiG
     service charts(cloud)[incl charts] in uiG
-    service nodejs(server)[NodeJS] in apiG
+    service nodejs(server)[ExpressJS] in apiG
     service graphql(server)[GraphQL API] in apiG
     service prisma(server)[Prisma] in apiG
 

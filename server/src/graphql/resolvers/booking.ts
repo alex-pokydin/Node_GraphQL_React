@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 import { AuthRequest } from "../../middleware/auth.ts";
 
 const prisma = new PrismaClient();

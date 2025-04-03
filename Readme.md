@@ -2,7 +2,15 @@
 
 ## Project Overview
 
-This is a complete app with GraphQL, Node.js, MongoDB and React.js. This app is a simple CRUD app with a list of books. The app is divided into two parts: the server and the client. The server is built with Node.js, Express.js, GraphQL and MongoDB. The client is built with React.js and Apollo Client.
+This is a complete app with GraphQL, Node.js, MongoDB and React.js. This app is a simple CRUD app with a list of events and event bookings. The app is divided into two parts: the server and the client. The server is built with Node.js, Express.js, GraphQL and MongoDB. The client is built with React.js and Typescript.
+
+Repository is a monorepo with server and client in separate folders.
+
+Starting the project development:
+
+```bash
+pnpm start
+```
 
 ## Features
 
@@ -151,3 +159,11 @@ Pull DB schema and generate client
 npx prisma db pull
 npx prisma generate
 ```
+
+### Install React
+
+```bash
+pnpm create vite client
+pnpm --filter client install
+```
+
